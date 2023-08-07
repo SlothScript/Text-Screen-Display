@@ -1,5 +1,5 @@
 class screen:
-	def __init__(self, screenWH, screenHeight="", newlinechar="\n"):
+	def __init__(self, screenWH, screenHeight="", seporationChar=" ", emptyCellChar="+", newlinechar="\n", DataToScreenDict={}, screenData=None):
 		try:
 			self.SW = int(screenWH)
 			try:
@@ -8,11 +8,16 @@ class screen:
 				raise TypeError("screenHeight not given")
 		except :
 			self.SW, self.SH = screenWH
-		self.DTKey = {}
-		self.sepo = " "
-		self.emtSqr = "+"
-		self.screenInfo = [eval(("[],"*self.SW)[0:-1])]
+		self.DTKey = DataToScreenDict
+		self.sepo = seporationChar
+		self.emtSqr = emptyCellChar
+		if not screenData:
+			self.screenInfo = [eval(("[],"*self.SW)[0:-1])]
+		else:
+			self.screenInfo = screenData
 		self.NLC = newlinechar
+		if screenData:
+			self.displayScreen()
 	
 	def setSData(self, data):
 		self.screenInfo = data
@@ -20,6 +25,9 @@ class screen:
 	def addDType(self,DTKey):
 		self.DTKey = self.DTKey | DTKey
 		return self.DTKey
+	
+	def setDType(self,DTKey):
+		self.DTKey = DTKey
 	
 	def changeEmptyPx(self, changeto):
 		self.emtSqr = changeto
