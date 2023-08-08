@@ -1,6 +1,8 @@
 # Text Screen Display
 A simple display that you can interface with python. The console module is not required and is used just for the example
 
+Also, to go right add to x, to go up, add to y (I know, its annoying)
+
 # Documention
 ## Initializing a screen
 To initizize a screen, you need to use the screen class
